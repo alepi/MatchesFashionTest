@@ -17,12 +17,17 @@ Xcode should be able to handle it. TextEdit is able to handle it.
 
 Resorted to https://jsonformatter.org/json-pretty-print Pretty printed the JSON response and pasted the text back into Xcode. Xcode crashed and had to restart it. Finally, it worked.
 
+Also, there are '\t' escape sequences in the JSON text, so I had to replace them all with "\\t" in the json string.
 
 *********************************************************
 	XCODE 14 DOES NOT SUPPORT COCOAPODS pod init
 *********************************************************
+I wanted to use https://github.com/jgsamudio/ModelSynchro to avoid having to manually build Decodable models for the data.
+
 I had the same problem described here:
 
 https://stackoverflow.com/questions/74137282/pod-init-error-force-encoding-cant-modify-frozen-string-frozenerror-at
 
 Switching to an Xcode-13 compatible file format worked as suggested there.
+
+Ended up ditching ModelSyncro as it had not been updated for years and was crashing with a segmentation fault.

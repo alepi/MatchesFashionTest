@@ -11,8 +11,7 @@ import Combine
 struct Networking {
     static let urlString = "https://www.matchesfashion.com/intl/womens/shop?format=json"
     
-    
-    static func fetchProductData() throws -> AnyPublisher<[Product], Error> {
+    static func fetchProductData() throws -> AnyPublisher<Data, Error> {
         guard let url = URL(string: urlString) else { throw URLError(.badURL) }
         let request = URLRequest(url: url)
         return URLSession.DataTaskPublisher(request: request, session: .shared)
@@ -20,10 +19,7 @@ struct Networking {
                 guard let response = response as? HTTPURLResponse, 200..<300 ~= response.statusCode else { throw URLError(.badServerResponse) }
                 return data
             }
-            .decode(type: ProductsResponseObject.self, decoder: JSONDecoder())
-            .map { responseObject -> [Product] in
-                return responseObject.results
-            }
             .eraseToAnyPublisher()
     }
+    
 }

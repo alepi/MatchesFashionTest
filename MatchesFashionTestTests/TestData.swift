@@ -120534,6 +120534,11 @@ struct TestData {
   "result": "",
   "reason": "",
   "location": ""
-}"""
+}
+"""
+    
+    static var sampleJSONString: String {
+        return sampleJSON.replacingOccurrences(of: "\t", with: "\\t")
+    }
     
 }

@@ -7,349 +7,73 @@
 
 import Foundation
 
-struct ProductsResponseObject : Decodable {
-    let results: [Product]
-    let result: String
-    let reason: String
-    let location: String
-}
-
-struct Product : Decodable {
-    {
-      "code": "1499031",
-      "name": "Modern Chess Openings book chess set",
-      "url": "/products/Olympia-Le-Tan-Modern-Chess-Openings-book-chess-set-1499031",
-      "description": "",
-      "purchasable": "",
-      "stock": "",
-      "futureStocks": "",
-      "availableForPickup": "",
-      "averageRating": "",
-      "numberOfReviews": "",
-      "summary": "",
-      "manufacturer": "",
-      "variantType": "",
-      "price": {
-        "currencyIso": "EUR",
-        "value": 2134,
-        "priceType": "BUY",
-        "formattedValue": "€2,134.00",
-        "minQuantity": "",
-        "maxQuantity": "",
-        "wasPrice": 0,
-        "formattedWasPrice": "€0.00",
-        "percentageDiscount": 0,
-        "taxIncluded": "",
-        "formattedPriceWithoutDecimals": "€2,134",
-        "formattedWasPriceWithoutDecimals": "€0"
-      },
-      "baseProduct": "",
-      "images": "",
-      "categories": "",
-      "reviews": "",
-      "classifications": "",
-      "potentialPromotions": "",
-      "variantOptions": "",
-      "baseOptions": "",
-      "volumePricesFlag": "",
-      "volumePrices": "",
-      "productReferences": "",
-      "variantMatrix": "",
-      "priceRange": "",
-      "firstCategoryNameList": "",
-      "multidimensional": "",
-      "configurable": "",
-      "addToCartDisabled": "",
-      "addToCartDisabledMessage": "",
-      "keywords": "",
-      "baseCode": "",
-      "genders": [
-        {
-          "code": "Womens",
-          "name": ""
+struct Product: Identifiable {
+    var id: String
+    
+    // NOTICE: not using Decodable protocol and machinery due to the complexity of the data
+    // and the lack of a formal specification for the data format.
+    //
+    // Also, another reason for decoding the JSON directly is that in this app specs I
+    // don't need to keep the various parts of a product separated into different dictionaries
+    // as they are in the JSON string.
+    //
+    // This approach has the characteristic that if a product dictionary does not contain all the
+    // required keys the product is discarded. This could be either a good or a bad thing.
+    // In a real application this would have to be considered.
+    //
+    // In a real world situation I would try to agree on a data format with the server devs
+    // and switch Product to a Decodable object and rely on their own tests to make sure
+    // that the data returned by the server conforms to that format.
+    static func ParseJSON(_ data: Data) -> [Product] {
+        guard let dict = try? JSONSerialization.jsonObject(with: data) else { return [] }
+        guard let dict = dict as? [String:AnyObject] else { return [] }
+        guard let results = dict["results"] as? [[String:AnyObject]] else { return [] }
+        var products = [Product]()
+        for dict in results {
+            if let product = Product(dict) {
+                products.append(product)
+            }
         }
-      ],
-      "indicativePrice": "",
-      "globalID": "",
-      "designer": {
-        "code": "",
-        "name": "Olympia Le-Tan",
-        "url": "",
-        "designerCategoryCode": ""
-      },
-      "styleNotes": "",
-      "detailBullets": "",
-      "cites": "",
-      "siteProperties": "",
-      "fulfillFromStore": "",
-      "hasVideo": "",
-      "videoUrl": "",
-      "videoIs360": false,
-      "videoHasModel": false,
-      "titleOverride": "",
-      "garmentType": "",
-      "colourProducts": "",
-      "styleItWithProducts": "",
-      "sizeAndFitInfo": [
-        "ONE SIZE"
-      ],
-      "sizeList": [
-        {
-          "code": "20156",
-          "baseCode": "10000",
-          "value": "ONE SIZE",
-          "sortOrder": "",
-          "taxonomyName": "",
-          "available": true,
-          "oneSize": ""
-        }
-      ],
-      "outfits": "",
-      "hasZoomImages": "",
-      "primaryImageMap": {
-        "thumbnail": {
-          "imageType": "PRIMARY",
-          "format": "thumbnail",
-          "url": "//assetsprx.matchesfashion.com/img/product/1499031_1_thumbnail.jpg",
-          "altText": "Olympia Le-Tan Modern Chess Openings book chess set",
-          "galleryIndex": "",
-          "width": ""
-        },
-        "large": {
-          "imageType": "PRIMARY",
-          "format": "large",
-          "url": "//assetsprx.matchesfashion.com/img/product/1499031_1_large.jpg",
-          "altText": "Olympia Le-Tan Modern Chess Openings book chess set",
-          "galleryIndex": "",
-          "width": ""
-        },
-        "medium": {
-          "imageType": "PRIMARY",
-          "format": "medium",
-          "url": "//assetsprx.matchesfashion.com/img/product/1499031_1_medium.jpg",
-          "altText": "Olympia Le-Tan Modern Chess Openings book chess set",
-          "galleryIndex": "",
-          "width": ""
-        }
-      },
-      "galleryImageMaps": [
-        {
-          "thumbnail": {
-            "imageType": "GALLERY",
-            "format": "thumbnail",
-            "url": "//assetsprx.matchesfashion.com/img/product/1499031_1_thumbnail.jpg",
-            "altText": "Modern Chess Openings book chess set",
-            "galleryIndex": 1,
-            "width": ""
-          },
-          "large": {
-            "imageType": "GALLERY",
-            "format": "large",
-            "url": "//assetsprx.matchesfashion.com/img/product/1499031_1_large.jpg",
-            "altText": "Modern Chess Openings book chess set",
-            "galleryIndex": 1,
-            "width": ""
-          },
-          "medium": {
-            "imageType": "GALLERY",
-            "format": "medium",
-            "url": "//assetsprx.matchesfashion.com/img/product/1499031_1_medium.jpg",
-            "altText": "Modern Chess Openings book chess set",
-            "galleryIndex": 1,
-            "width": ""
-          }
-        },
-        {
-          "thumbnail": {
-            "imageType": "GALLERY",
-            "format": "thumbnail",
-            "url": "//assetsprx.matchesfashion.com/img/product/1499031_2_thumbnail.jpg",
-            "altText": "Modern Chess Openings book chess set",
-            "galleryIndex": 2,
-            "width": ""
-          },
-          "large": {
-            "imageType": "GALLERY",
-            "format": "large",
-            "url": "//assetsprx.matchesfashion.com/img/product/1499031_2_large.jpg",
-            "altText": "Modern Chess Openings book chess set",
-            "galleryIndex": 2,
-            "width": ""
-          },
-          "medium": {
-            "imageType": "GALLERY",
-            "format": "medium",
-            "url": "//assetsprx.matchesfashion.com/img/product/1499031_2_medium.jpg",
-            "altText": "Modern Chess Openings book chess set",
-            "galleryIndex": 2,
-            "width": ""
-          }
-        },
-        {
-          "thumbnail": {
-            "imageType": "GALLERY",
-            "format": "thumbnail",
-            "url": "//assetsprx.matchesfashion.com/img/product/1499031_3_thumbnail.jpg",
-            "altText": "Modern Chess Openings book chess set",
-            "galleryIndex": 3,
-            "width": ""
-          },
-          "large": {
-            "imageType": "GALLERY",
-            "format": "large",
-            "url": "//assetsprx.matchesfashion.com/img/product/1499031_3_large.jpg",
-            "altText": "Modern Chess Openings book chess set",
-            "galleryIndex": 3,
-            "width": ""
-          },
-          "medium": {
-            "imageType": "GALLERY",
-            "format": "medium",
-            "url": "//assetsprx.matchesfashion.com/img/product/1499031_3_medium.jpg",
-            "altText": "Modern Chess Openings book chess set",
-            "galleryIndex": 3,
-            "width": ""
-          }
-        },
-        {
-          "thumbnail": {
-            "imageType": "GALLERY",
-            "format": "thumbnail",
-            "url": "//assetsprx.matchesfashion.com/img/product/1499031_4_thumbnail.jpg",
-            "altText": "Modern Chess Openings book chess set",
-            "galleryIndex": 4,
-            "width": ""
-          },
-          "large": {
-            "imageType": "GALLERY",
-            "format": "large",
-            "url": "//assetsprx.matchesfashion.com/img/product/1499031_4_large.jpg",
-            "altText": "Modern Chess Openings book chess set",
-            "galleryIndex": 4,
-            "width": ""
-          },
-          "medium": {
-            "imageType": "GALLERY",
-            "format": "medium",
-            "url": "//assetsprx.matchesfashion.com/img/product/1499031_4_medium.jpg",
-            "altText": "Modern Chess Openings book chess set",
-            "galleryIndex": 4,
-            "width": ""
-          }
-        },
-        {
-          "thumbnail": {
-            "imageType": "GALLERY",
-            "format": "thumbnail",
-            "url": "//assetsprx.matchesfashion.com/img/product/1499031_5_thumbnail.jpg",
-            "altText": "Modern Chess Openings book chess set",
-            "galleryIndex": 5,
-            "width": ""
-          },
-          "large": {
-            "imageType": "GALLERY",
-            "format": "large",
-            "url": "//assetsprx.matchesfashion.com/img/product/1499031_5_large.jpg",
-            "altText": "Modern Chess Openings book chess set",
-            "galleryIndex": 5,
-            "width": ""
-          },
-          "medium": {
-            "imageType": "GALLERY",
-            "format": "medium",
-            "url": "//assetsprx.matchesfashion.com/img/product/1499031_5_medium.jpg",
-            "altText": "Modern Chess Openings book chess set",
-            "galleryIndex": 5,
-            "width": ""
-          }
-        },
-        {
-          "thumbnail": {
-            "imageType": "GALLERY",
-            "format": "thumbnail",
-            "url": "//assetsprx.matchesfashion.com/img/product/1499031_6_thumbnail.jpg",
-            "altText": "Modern Chess Openings book chess set",
-            "galleryIndex": 6,
-            "width": ""
-          },
-          "large": {
-            "imageType": "GALLERY",
-            "format": "large",
-            "url": "//assetsprx.matchesfashion.com/img/product/1499031_6_large.jpg",
-            "altText": "Modern Chess Openings book chess set",
-            "galleryIndex": 6,
-            "width": ""
-          },
-          "medium": {
-            "imageType": "GALLERY",
-            "format": "medium",
-            "url": "//assetsprx.matchesfashion.com/img/product/1499031_6_medium.jpg",
-            "altText": "Modern Chess Openings book chess set",
-            "galleryIndex": 6,
-            "width": ""
-          }
-        },
-        {
-          "thumbnail": {
-            "imageType": "GALLERY",
-            "format": "thumbnail",
-            "url": "//assetsprx.matchesfashion.com/img/product/1499031_7_thumbnail.jpg",
-            "altText": "Modern Chess Openings book chess set",
-            "galleryIndex": 7,
-            "width": ""
-          },
-          "large": {
-            "imageType": "GALLERY",
-            "format": "large",
-            "url": "//assetsprx.matchesfashion.com/img/product/1499031_7_large.jpg",
-            "altText": "Modern Chess Openings book chess set",
-            "galleryIndex": 7,
-            "width": ""
-          },
-          "medium": {
-            "imageType": "GALLERY",
-            "format": "medium",
-            "url": "//assetsprx.matchesfashion.com/img/product/1499031_7_medium.jpg",
-            "altText": "Modern Chess Openings book chess set",
-            "galleryIndex": 7,
-            "width": ""
-          }
-        }
-      ],
-      "galleryImageMapSize": "",
-      "sellableInCurrentCountry": "",
-      "refinementColour": "Blue",
-      "slug": "Exclusive",
-      "slugVisibleOnPDP": false,
-      "carouselImages": "",
-      "navDepartment": "",
-      "nonRootSuperCategories": "",
-      "freshnessDate": 1668573034000,
-      "myStylistOnly": false,
-      "hasCitesRestriction": "",
-      "isOneSize": "",
-      "lookbookDescription": "",
-      "lookbookId": "",
-      "markDown": "",
-      "viewable": false,
-      "designerUrl": "",
-      "formattedFreshnessDate": "16-11-2022",
-      "season": "Continuity",
-      "leafCategories": "",
-      "genderShortName": "W",
-      "catLevel2": "WomensHomewareHomeAccessories",
-      "catLevel2Name": "Home Accessories",
-      "stockValue": "£null",
-      "stockFragment": "100.0",
-      "comingSoon": false,
-      "approvalStatus": "APPROVED",
-      "stockCount": "17",
-      "countryOfOrigin": "",
-      "taxAndDutyMessage": "",
-      "isVisibleAfterLastSold": false,
-      "curated": false,
-      "navDivision": "",
-      "isBatchGiftProduct": false,
-      "approvedDate": ""
+        return products
     }
+    
+    // The "Create a memory-efficient model to represent these products" part
+    // of the assignment is ambiguous.
+    //
+    // What I am doing here might or might not meet the expectations of the reviewer,
+    // but on the other hand that part of the assignment is really unclear without
+    //further explanation.
+    let name: String
+    let designerName: String
+    let priceFormatted: String
+    let priceValue: Double
+    let imageURL: URL
+    
+    init?(_ dictionary: [String:AnyObject])
+    {
+        guard let code = dictionary["code"] as? String else { return nil }
+        guard let _name = dictionary["name"] as? String else { return nil }
+        guard let designerDictionary = dictionary["designer"] as? [String:Any] else { return nil }
+        guard let priceDictionary = dictionary["price"] as? [String:Any] else { return nil }
+        guard let imagesDictionary = dictionary["primaryImageMap"] as? [String:[String:Any]] else { return nil }
+        // choosing medium images for a balance between quality and memory usage
+        guard let imageDictionary = imagesDictionary["medium"] else { return nil }
+        guard let _designerName = designerDictionary["name"] as? String else { return nil }
+        guard let _priceFormatted = priceDictionary["formattedValue"] as? String else { return nil }
+        guard let _priceValue = priceDictionary["value"] as? Double else { return nil }
+        guard var imageURLString = imageDictionary["url"] as? String else { return nil }
+        // This is really unusual, almost perverse :-) url strings in the json don't start with the protocol!!!
+        // Maybe there is a reason for it in the real app, however I believe that there should
+        // be a specification of what is expected from the server and the server devs should test
+        // the format of the data they send out.	
+        if imageURLString.starts(with: "//") { imageURLString = "https:" + imageURLString }
+        guard let _imageURL = URL(string: imageURLString) else { return nil }
+        id = code
+        name = _name
+        designerName = _designerName
+        priceFormatted = _priceFormatted
+        priceValue = _priceValue
+        imageURL = _imageURL
+    }
+    
 }

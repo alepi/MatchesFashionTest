@@ -11,7 +11,7 @@ import SwiftUI
 struct MatchesFashionTestApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ProductsView()
         }
     }
 }
