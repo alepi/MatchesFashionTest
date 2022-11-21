@@ -31,3 +31,5 @@ https://stackoverflow.com/questions/74137282/pod-init-error-force-encoding-cant-
 Switching to an Xcode-13 compatible file format worked as suggested there.
 
 Ended up ditching ModelSyncro as it had not been updated for years and was crashing with a segmentation fault.
+
+Removed cocoa pods altogether.

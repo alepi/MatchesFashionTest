@@ -13,15 +13,28 @@ struct ProductsView: View {
         NavigationView {
             List {
                 ForEach(viewModel.products) { product in
-                    VStack {
-                        AsyncImage(url: product.imageURL) { image in
-                            image.resizable()
-                        } placeholder: {
-                            ProgressView()
+                    NavigationLink(destination: viewModel.productDetailView(for: product)) {
+                        VStack(alignment: .center) {
+                            AsyncImage(url: product.imageURL) { image in
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                            } placeholder: {
+                                ProgressView()
+                            }
+                            .frame(width: 200, height: 200)
+                            .border(Color.black)
+                            .clipped()
+                            /*@START_MENU_TOKEN@*/Text(product.name)/*@END_MENU_TOKEN@*/
+                                .frame(maxWidth: .infinity)
+                                .multilineTextAlignment(.center)
+                            Text(product.designerName)
+                                .frame(maxWidth: .infinity)
+                                .multilineTextAlignment(.center)
+                            Text(product.priceFormatted)
+                                .frame(maxWidth: .infinity)
+                                .multilineTextAlignment(.center)
                         }
-                        /*@START_MENU_TOKEN@*/Text(product.name)/*@END_MENU_TOKEN@*/
-                        Text(product.designerName)
-                        Text(product.priceFormatted)
                     }
                 }
             }.navigationTitle("Products")

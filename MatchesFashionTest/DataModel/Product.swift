@@ -47,6 +47,7 @@ struct Product: Identifiable {
     let designerName: String
     let priceFormatted: String
     let priceValue: Double
+    let currencyIso: String
     let imageURL: URL
     
     init?(_ dictionary: [String:AnyObject])
@@ -61,11 +62,16 @@ struct Product: Identifiable {
         guard let _designerName = designerDictionary["name"] as? String else { return nil }
         guard let _priceFormatted = priceDictionary["formattedValue"] as? String else { return nil }
         guard let _priceValue = priceDictionary["value"] as? Double else { return nil }
+        guard let _currencyIso = priceDictionary["currencyIso"] as? String else { return nil }
         guard var imageURLString = imageDictionary["url"] as? String else { return nil }
-        // This is really unusual, almost perverse :-) url strings in the json don't start with the protocol!!!
+        // This is rather unusual, almost perverse :-)
+        // URL strings in the json don't start with the protocol!!!
         // Maybe there is a reason for it in the real app, however I believe that there should
         // be a specification of what is expected from the server and the server devs should test
-        // the format of the data they send out.	
+        // the format of the data they send out.
+        //
+        // Without going for in depth testing of all products myself, I accept URLs that start with //
+        // and just add https to them.
         if imageURLString.starts(with: "//") { imageURLString = "https:" + imageURLString }
         guard let _imageURL = URL(string: imageURLString) else { return nil }
         id = code
@@ -73,7 +79,18 @@ struct Product: Identifiable {
         designerName = _designerName
         priceFormatted = _priceFormatted
         priceValue = _priceValue
+        currencyIso = _currencyIso
         imageURL = _imageURL
+    }
+    
+    init() {
+        id = "1499031"
+        name = "Modern Chess Openings book chess set"
+        designerName = "Olympia Le-Tan"
+        priceFormatted = "€2,134.00"
+        priceValue = 2134
+        currencyIso = "EUR"
+        imageURL = URL(string: "https://assetsprx.matchesfashion.com/img/product/1499031_1_medium.jpg")!
     }
     
 }
