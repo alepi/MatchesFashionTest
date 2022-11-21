@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -52,6 +52,7 @@
 		281CE72B292B874C00D64F42 /* NetworkingDataProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingDataProcessor.swift; sourceTree = "<group>"; };
 		281CE72E292B8A5600D64F42 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		281CE730292B8B3F00D64F42 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		28BD9D1E292BC70E00497286 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +83,7 @@
 		281CE6F3292B85A000D64F42 = {
 			isa = PBXGroup;
 			children = (
+				28BD9D1E292BC70E00497286 /* Podfile */,
 				281CE6FE292B85A000D64F42 /* MatchesFashionTest */,
 				281CE70F292B85A200D64F42 /* MatchesFashionTestTests */,
 				281CE719292B85A200D64F42 /* MatchesFashionTestUITests */,
@@ -227,7 +229,7 @@
 				};
 			};
 			buildConfigurationList = 281CE6F7292B85A000D64F42 /* Build configuration list for PBXProject "MatchesFashionTest" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
