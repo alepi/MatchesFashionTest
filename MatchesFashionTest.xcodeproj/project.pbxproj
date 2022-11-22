@@ -22,6 +22,9 @@
 		28B733FB292C255500A4BEDC /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B733FA292C255500A4BEDC /* ProductDetailView.swift */; };
 		28B733FD292C260D00A4BEDC /* ProductDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B733FC292C260D00A4BEDC /* ProductDetailViewModel.swift */; };
 		28B733FF292C325800A4BEDC /* ProductCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B733FE292C325800A4BEDC /* ProductCoordinator.swift */; };
+		28B73401292C3C1900A4BEDC /* CurrencyConvertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B73400292C3C1900A4BEDC /* CurrencyConvertView.swift */; };
+		28B73403292C3E4F00A4BEDC /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 28B73402292C3E4F00A4BEDC /* README.txt */; };
+		28B73405292C402A00A4BEDC /* CurrencyConvertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B73404292C402A00A4BEDC /* CurrencyConvertViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,9 @@
 		28B733FA292C255500A4BEDC /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 		28B733FC292C260D00A4BEDC /* ProductDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewModel.swift; sourceTree = "<group>"; };
 		28B733FE292C325800A4BEDC /* ProductCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCoordinator.swift; sourceTree = "<group>"; };
+		28B73400292C3C1900A4BEDC /* CurrencyConvertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConvertView.swift; sourceTree = "<group>"; };
+		28B73402292C3E4F00A4BEDC /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		28B73404292C402A00A4BEDC /* CurrencyConvertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConvertViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +96,7 @@
 		281CE6F3292B85A000D64F42 = {
 			isa = PBXGroup;
 			children = (
+				28B73402292C3E4F00A4BEDC /* README.txt */,
 				281CE6FE292B85A000D64F42 /* MatchesFashionTest */,
 				281CE70F292B85A200D64F42 /* MatchesFashionTestTests */,
 				281CE719292B85A200D64F42 /* MatchesFashionTestUITests */,
@@ -116,6 +123,8 @@
 				28B733FC292C260D00A4BEDC /* ProductDetailViewModel.swift */,
 				28B733F8292C0B3100A4BEDC /* ProductsViewModel.swift */,
 				28B733FE292C325800A4BEDC /* ProductCoordinator.swift */,
+				28B73400292C3C1900A4BEDC /* CurrencyConvertView.swift */,
+				28B73404292C402A00A4BEDC /* CurrencyConvertViewModel.swift */,
 				281CE703292B85A200D64F42 /* Assets.xcassets */,
 				281CE705292B85A200D64F42 /* Preview Content */,
 				28B733F5292BF35E00A4BEDC /* Networking */,
@@ -272,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				281CE707292B85A200D64F42 /* Preview Assets.xcassets in Resources */,
+				28B73403292C3E4F00A4BEDC /* README.txt in Resources */,
 				281CE704292B85A200D64F42 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,10 +308,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				28B733F9292C0B3100A4BEDC /* ProductsViewModel.swift in Sources */,
+				28B73405292C402A00A4BEDC /* CurrencyConvertViewModel.swift in Sources */,
 				28B733FB292C255500A4BEDC /* ProductDetailView.swift in Sources */,
 				28B733FF292C325800A4BEDC /* ProductCoordinator.swift in Sources */,
 				281CE72A292B85C700D64F42 /* Networking.swift in Sources */,
 				281CE702292B85A000D64F42 /* ProductsView.swift in Sources */,
+				28B73401292C3C1900A4BEDC /* CurrencyConvertView.swift in Sources */,
 				281CE72C292B874C00D64F42 /* NetworkingDataProcessor.swift in Sources */,
 				281CE72F292B8A5600D64F42 /* Product.swift in Sources */,
 				281CE700292B85A000D64F42 /* MatchesFashionTestApp.swift in Sources */,

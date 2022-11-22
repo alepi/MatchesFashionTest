@@ -11,6 +11,9 @@ struct ProductDetailView: View {
     init() {
         UILabel.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).adjustsFontSizeToFitWidth = true
     }
+    // here the view model is an ordinary variable
+    // because its values are set before the view is shown
+    // and never changed
     var viewModel = ProductDetailViewModel()
     var body: some View {
         VStack(alignment: .center) {
@@ -36,6 +39,6 @@ struct ProductDetailView: View {
 
 struct ProductDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailView().environmentObject(ProductDetailViewModel())
+        ProductDetailView()
     }
 }

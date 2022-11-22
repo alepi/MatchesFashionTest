@@ -13,7 +13,12 @@ struct ProductsView: View {
         NavigationView {
             List {
                 ForEach(viewModel.products) { product in
-                    NavigationLink(destination: viewModel.productDetailView(for: product)) {
+                    // using a navigation link rather than a tap gesture here
+                    // as it's the standard way in swiftUI
+                    // One way to hide the disclosure arrow is to use a Z stack like below
+                    ZStack {
+                        NavigationLink(destination: viewModel.productDetailView(for: product)) {
+                        }.opacity(0)
                         VStack(alignment: .center) {
                             AsyncImage(url: product.imageURL) { image in
                                 image
@@ -38,6 +43,14 @@ struct ProductsView: View {
                     }
                 }
             }.navigationTitle("Products")
+                .toolbar {
+                    Button("Currency") { viewModel.showCurrencyConvertView=true }
+                }
+                .sheet(isPresented: $viewModel.showCurrencyConvertView, onDismiss: {
+                    print(viewModel.showCurrencyConvertView)
+                }) {
+                    viewModel.currencyConvertView
+                }
         }
     }
 }

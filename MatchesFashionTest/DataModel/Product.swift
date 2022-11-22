@@ -45,7 +45,9 @@ struct Product: Identifiable {
     //further explanation.
     let name: String
     let designerName: String
-    let priceFormatted: String
+    // this will be changed for currency conversion
+    // could be done in a better way with more time available
+    var priceFormatted: String
     let priceValue: Double
     let currencyIso: String
     let imageURL: URL
