@@ -38,7 +38,7 @@ class ProductsViewModel : ObservableObject {
     }
     
     private func convertCurrencyInProducts() {
-        ProductCoordinator.currencyConversionFactor = 0.5 // TODO(ale): implement API call
+        ProductCoordinator.currencyConversionFactor = 0.5 // Not implementing API calls here. See README
         var convertedProducts = [Product]()
         for var product in products {
             let convertedPrice = product.priceValue * ProductCoordinator.currencyConversionFactor
